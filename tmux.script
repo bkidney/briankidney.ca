@@ -1,0 +1,10 @@
+tmux new-session -s briankidney -n vim -d
+tmux new-window -t briankidney:2 -n jekyll
+tmux new-window -t briankidney:3 -n git
+
+tmux send-keys -t briankidney:1 "vim" C-m
+tmux send-keys -t briankidney:2 "jekyll server --watch" C-m
+tmux send-keys -t briankidney:3 "git status" C-m
+
+tmux select-window -t briankidney:1
+tmux attach-session -t briankidney

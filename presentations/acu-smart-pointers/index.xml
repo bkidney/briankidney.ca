@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ACU Smart Pointers: 2 March 2015</title>
+    <link>http://briankidney.ca/presentations/acu-smart-pointers/</link>
+    <description>Recent content on ACU Smart Pointers: 2 March 2015</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Mar 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://briankidney.ca/presentations/acu-smart-pointers/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Smart Pointers</title>
+      <link>http://briankidney.ca/presentations/acu-smart-pointers/slides/</link>
+      <pubDate>Sun, 01 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://briankidney.ca/presentations/acu-smart-pointers/slides/</guid>
+      <description>&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;A wise man said...&lt;/h1&gt;
+	&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;In C++ it&amp;rsquo;s harder to shoot yourself in the foot, but when you do, you blow off your whole leg.&amp;rdquo;    — Bjarne Stroustrup.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;/section&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;Smart Pointers&lt;/h1&gt;
+	&lt;ul&gt;
+&lt;li&gt;Until recently we had &amp;ldquo;new&amp;rdquo; and &amp;ldquo;delete&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;We also had
+
+&lt;ul&gt;
+&lt;li&gt;Owership decisions (who calls delete?)&lt;/li&gt;
+&lt;li&gt;Memory leaks&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/section&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;Smart Pointers&lt;/h1&gt;
+	&lt;ul&gt;
+&lt;li&gt;Smart pointers replace &amp;ldquo;new&amp;rdquo; and &amp;ldquo;delete&amp;rdquo;
+
+&lt;ul&gt;
+&lt;li&gt;In most cases&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Remove memory management burden&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/section&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;Types of Smart Pointers&lt;/h1&gt;
+	&lt;ul&gt;
+&lt;li&gt;unique_ptr
+
+&lt;ul&gt;
+&lt;li&gt;When in doubt its the default&lt;/li&gt;
+&lt;li&gt;Can be moved but not copied&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;shared_ptr
+
+&lt;ul&gt;
+&lt;li&gt;For pointers that will be shared&lt;/li&gt;
+&lt;li&gt;Only use is sharing need is known&lt;/li&gt;
+&lt;li&gt;unique_ptr can be converted to shared_ptr&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/section&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;Types of Smart Pointers&lt;/h1&gt;
+	&lt;ul&gt;
+&lt;li&gt;weak_ptr
+
+&lt;ul&gt;
+&lt;li&gt;Copy from a shared_ptr&lt;/li&gt;
+&lt;li&gt;Made empty by distruction of shared_ptr&lt;/li&gt;
+&lt;li&gt;Can be used to break a circular reference&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;auto_ptr
+
+&lt;ul&gt;
+&lt;li&gt;Attempt from previous standard without move semantics&lt;/li&gt;
+&lt;li&gt;Majority of uses can be converted to unique_ptr&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/section&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;Examples - unique_ptr&lt;/h1&gt;
+	&lt;pre class=&#34;code&#34;&gt;&lt;code class=&#34;cpp&#34;&gt;
+
+  // Creating a Unique Pointer
+  std::unique_ptr&lt;int&gt; the_answer = std::make_unique&lt;int&gt;(42);
+  std::cout &lt;&lt; &#34;Creation...&#34; &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34; the_answer.get() = &#34; &lt;&lt; the_answer.get() &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34;*the_answer = &#34; &lt;&lt; *the_answer &lt;&lt; std::endl;
+  
+  // Copying a Unique Pointer is not allowed
+  // std::unique_ptr&lt;int&gt; last_game_scores = scores;
+  
+  // Moving a Unique Pointer
+  std::unique_ptr&lt;int&gt; forty_two  = std::move(the_answer);
+  std::cout &lt;&lt; &#34;After move...&#34; &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34; the_answer.get() = &#34; &lt;&lt; the_answer.get() &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34;*the_answer = &#34; &lt;&lt; std::endl; //&lt;&lt; *the_answer &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34; forty_two.get() = &#34; &lt;&lt; forty_two.get() &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34;*forty_two = &#34; &lt;&lt; *forty_two &lt;&lt; std::endl;
+
+  // Releasing the pointer
+  forty_two.reset();
+  std::cout &lt;&lt; &#34;After reset...&#34; &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34; forty_two.get() = &#34; &lt;&lt; forty_two.get() &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34;*forty_two = &#34; &lt;&lt; std::endl; // &lt;&lt; *forty_two &lt;&lt; std::endl;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/section&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;Examples - shared_ptr and weak_ptr&lt;/h1&gt;
+	
+&lt;/section&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;What about Raw Pointers?&lt;/h1&gt;
+	&lt;ul&gt;
+&lt;li&gt;Low level data structures
+
+&lt;ul&gt;
+&lt;li&gt;For performance, maybe!&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Non-owning pointers and reference
+
+&lt;ul&gt;
+&lt;li&gt;Pass to a function with limited lifecycle&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Observer to an object with a longer life&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/section&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;Examples - Raw Pointer&lt;/h1&gt;
+	
+&lt;/section&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;References&lt;/h1&gt;
+	&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://herbsutter.com/elements-of-modern-c-style/&#34;&gt;http://herbsutter.com/elements-of-modern-c-style/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://herbsutter.com/2013/05/29/gotw-89-solution-smart-pointers/&#34;&gt;http://herbsutter.com/2013/05/29/gotw-89-solution-smart-pointers/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Smart_pointer&#34;&gt;http://en.wikipedia.org/wiki/Smart_pointer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Back to the Basics! Essentials of Modern C++ Style&amp;rdquo; - Herb Sutter
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=xnqTKD8uD64&#34;&gt;https://www.youtube.com/watch?v=xnqTKD8uD64&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/CppCon/CppCon2014&#34;&gt;https://github.com/CppCon/CppCon2014&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/section&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

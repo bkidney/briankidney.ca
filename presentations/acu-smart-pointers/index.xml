@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ACU Smart Pointers: 2 March 2015</title>
-    <link>http://localhost:1313/presentations/acu-smart-pointers/</link>
+    <link>http://briankidney.ca/presentations/acu-smart-pointers/</link>
     <description>Recent content on ACU Smart Pointers: 2 March 2015</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 01 Mar 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/presentations/acu-smart-pointers/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://briankidney.ca/presentations/acu-smart-pointers/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Smart Pointers</title>
-      <link>http://localhost:1313/presentations/acu-smart-pointers/slides/</link>
+      <link>http://briankidney.ca/presentations/acu-smart-pointers/slides/</link>
       <pubDate>Sun, 01 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/presentations/acu-smart-pointers/slides/</guid>
+      <guid>http://briankidney.ca/presentations/acu-smart-pointers/slides/</guid>
       <description>&lt;p&gt;&lt;section&gt;
 	&lt;h1 class=&#34;slidetitle&#34;&gt;A wise man said...&lt;/h1&gt;
 	&lt;blockquote&gt;

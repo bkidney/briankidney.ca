@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ACU Smart Pointers: 2 March 2015</title>
-    <link>http://briankidney.ca/presentations/acu-smart-pointers/</link>
+    <link>http://localhost:1313/presentations/acu-smart-pointers/</link>
     <description>Recent content on ACU Smart Pointers: 2 March 2015</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 01 Mar 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://briankidney.ca/presentations/acu-smart-pointers/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/presentations/acu-smart-pointers/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Smart Pointers</title>
-      <link>http://briankidney.ca/presentations/acu-smart-pointers/slides/</link>
+      <link>http://localhost:1313/presentations/acu-smart-pointers/slides/</link>
       <pubDate>Sun, 01 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://briankidney.ca/presentations/acu-smart-pointers/slides/</guid>
+      <guid>http://localhost:1313/presentations/acu-smart-pointers/slides/</guid>
       <description>&lt;p&gt;&lt;section&gt;
 	&lt;h1 class=&#34;slidetitle&#34;&gt;A wise man said...&lt;/h1&gt;
 	&lt;blockquote&gt;
@@ -84,6 +84,14 @@
 &lt;li&gt;Made empty by distruction of shared_ptr&lt;/li&gt;
 &lt;li&gt;Can be used to break a circular reference&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/section&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;Types of Smart Pointers&lt;/h1&gt;
+	&lt;ul&gt;
 &lt;li&gt;auto_ptr
 
 &lt;ul&gt;
@@ -100,27 +108,38 @@
 	&lt;pre class=&#34;code&#34;&gt;&lt;code class=&#34;cpp&#34;&gt;
 
   // Creating a Unique Pointer
-  std::unique_ptr&lt;int&gt; the_answer = std::make_unique&lt;int&gt;(42);
+  std::unique_ptr&amp;lt;int&amp;gt; the_answer 
+    = std::make_unique&amp;lt;int&amp;gt;(42);
   std::cout &lt;&lt; &#34;Creation...&#34; &lt;&lt; std::endl;
-  std::cout &lt;&lt; &#34; the_answer.get() = &#34; &lt;&lt; the_answer.get() &lt;&lt; std::endl;
-  std::cout &lt;&lt; &#34;*the_answer = &#34; &lt;&lt; *the_answer &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34; the_answer.get() = &#34; 
+    &lt;&lt; the_answer.get() &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34;*the_answer = &#34; 
+    &lt;&lt; *the_answer &lt;&lt; std::endl;
   
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/section&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;Examples - unique_ptr&lt;/h1&gt;
+	&lt;pre class=&#34;code&#34;&gt;&lt;code class=&#34;cpp&#34;&gt;
+
   // Copying a Unique Pointer is not allowed
-  // std::unique_ptr&lt;int&gt; last_game_scores = scores;
+  // std::unique_ptr&amp;lt;int&amp;gt; forty_two = the_answer;
   
   // Moving a Unique Pointer
-  std::unique_ptr&lt;int&gt; forty_two  = std::move(the_answer);
+  std::unique_ptr&amp;lt;int&amp;gt; forty_two  
+    = std::move(the_answer);
   std::cout &lt;&lt; &#34;After move...&#34; &lt;&lt; std::endl;
-  std::cout &lt;&lt; &#34; the_answer.get() = &#34; &lt;&lt; the_answer.get() &lt;&lt; std::endl;
-  std::cout &lt;&lt; &#34;*the_answer = &#34; &lt;&lt; std::endl; //&lt;&lt; *the_answer &lt;&lt; std::endl;
-  std::cout &lt;&lt; &#34; forty_two.get() = &#34; &lt;&lt; forty_two.get() &lt;&lt; std::endl;
-  std::cout &lt;&lt; &#34;*forty_two = &#34; &lt;&lt; *forty_two &lt;&lt; std::endl;
-
-  // Releasing the pointer
-  forty_two.reset();
-  std::cout &lt;&lt; &#34;After reset...&#34; &lt;&lt; std::endl;
-  std::cout &lt;&lt; &#34; forty_two.get() = &#34; &lt;&lt; forty_two.get() &lt;&lt; std::endl;
-  std::cout &lt;&lt; &#34;*forty_two = &#34; &lt;&lt; std::endl; // &lt;&lt; *forty_two &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34; the_answer.get() = &#34; 
+    &lt;&lt; the_answer.get() &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34;*the_answer = &#34; 
+    &lt;&lt; std::endl; //&lt;&lt; *the_answer &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34; forty_two.get() = &#34; 
+    &lt;&lt; forty_two.get() &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34;*forty_two = &#34; 
+    &lt;&lt; *forty_two &lt;&lt; std::endl;
 
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -128,8 +147,150 @@
 &lt;/p&gt;
 
 &lt;p&gt;&lt;section&gt;
-	&lt;h1 class=&#34;slidetitle&#34;&gt;Examples - shared_ptr and weak_ptr&lt;/h1&gt;
-	
+	&lt;h1 class=&#34;slidetitle&#34;&gt;Examples - unique_ptr&lt;/h1&gt;
+	&lt;pre class=&#34;code&#34;&gt;&lt;code class=&#34;txt&#34;&gt;
+Creation...
+  the_answer.get() = 0x7faf30403b80
+  *the_answer = 42
+After move...
+  the_answer.get() = 0x0
+  *the_answer =
+  forty_two.get() = 0x7faf30403b80
+  *forty_two = 42
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/section&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;Examples - unique_ptr&lt;/h1&gt;
+	&lt;pre class=&#34;code&#34;&gt;&lt;code class=&#34;cpp&#34;&gt;
+
+  // Releasing the pointer
+  forty_two.reset();
+  std::cout &lt;&lt; &#34;After reset...&#34; 
+    &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34; forty_two.get() = &#34; 
+    &lt;&lt; forty_two.get() &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34;*forty_two = &#34; 
+    &lt;&lt; std::endl; // &lt;&lt; *forty_two &lt;&lt; std::endl;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre class=&#34;code&#34;&gt;&lt;code class=&#34;txt&#34;&gt;
+
+After reset...
+ forty_two.get() = 0x0
+ *forty_two =
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/section&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;Ex - shared_ptr and weak_ptr&lt;/h1&gt;
+	&lt;pre class=&#34;code&#34;&gt;&lt;code class=&#34;cpp&#34;&gt;
+
+  // Move to shared
+  std::unique_ptr&amp;lt;Point2d&amp;gt; point 
+    = std::make_unique&amp;lt;Point2d&amp;gt;(4, 2);
+  std::cout &lt;&lt; &#34;Creation (again)...&#34; &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34;point.get() = &#34; 
+    &lt;&lt; point.get() &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34;*point = &#34;
+    &lt;&lt; &#34;(&#34; &lt;&lt; point-&gt;x &lt;&lt; &#34;, &#34; &lt;&lt; point-&gt;y &lt;&lt; &#34;)&#34; 
+    &lt;&lt; std::endl;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/section&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;Ex - shared_ptr and weak_ptr&lt;/h1&gt;
+	&lt;pre class=&#34;code&#34;&gt;&lt;code class=&#34;cpp&#34;&gt;
+
+
+  std::shared_ptr&amp;lt;Point2d&amp;gt; 
+    shared_point(std::move(point));
+  std::cout &lt;&lt; &#34;Moved to shared pointer...&#34; 
+    &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34;point.get() = &#34; &lt;&lt; point.get() 
+    &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34;*point = &#34; &lt;&lt; std::endl ;
+    //&lt;&lt; &#34;(&#34; &lt;&lt; *point.x &lt;&lt; &#34;, &#34; *point.y &lt;&lt; &#34;)&#34; 
+    //&lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34;shared_point.get() = &#34; 
+    &lt;&lt; shared_point.get() &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34;*shared_point = &#34;
+    &lt;&lt; &#34;(&#34; &lt;&lt; shared_point-&gt;x &lt;&lt; &#34;, &#34;
+    &lt;&lt;  shared_point-&gt;y &lt;&lt; &#34;)&#34; &lt;&lt; std::endl;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/section&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;Ex - shared_ptr and weak_ptr&lt;/h1&gt;
+	&lt;pre class=&#34;code&#34;&gt;&lt;code class=&#34;txt&#34;&gt;
+
+
+Creation (again)...
+point.get() = 0x7fb01bc03b80
+*point = (4, 2)
+Moved to shared pointer...
+point.get() = 0x0
+*point =
+shared_point.get() = 0x7fb01bc03b80
+*shared_point = (4, 2)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/section&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;Ex - shared_ptr and weak_ptr&lt;/h1&gt;
+	&lt;pre class=&#34;code&#34;&gt;&lt;code class=&#34;cpp&#34;&gt;
+
+  // Create a weak pointer
+  std::weak_ptr&amp;lt;Point2d&amp;gt; weak_point 
+    = shared_point;
+  std::cout &lt;&lt; &#34;Create a weak pointer...&#34; 
+    &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34;weak_point.expired() =  &#34;
+    &lt;&lt; (weak_point.expired() ? &#34;true&#34; : &#34;false&#34;)  
+    &lt;&lt; std::endl;
+
+  shared_point.reset();
+  std::cout &lt;&lt; &#34;After Shared Pointer is Reset...&#34; 
+    &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34;shared_point.get() = &#34; 
+    &lt;&lt; shared_point.get() &lt;&lt; std::endl;
+  std::cout &lt;&lt; &#34;weak_point.expired() =  &#34;
+    &lt;&lt; (weak_point.expired() ? &#34;true&#34; : &#34;false&#34;)  
+    &lt;&lt; std::endl;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/section&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;section&gt;
+	&lt;h1 class=&#34;slidetitle&#34;&gt;Ex - shared_ptr and weak_ptr&lt;/h1&gt;
+	&lt;pre class=&#34;code&#34;&gt;&lt;code class=&#34;txt&#34;&gt;
+
+
+Create a weak pointer...
+weak_point.expired() =  false
+After Shared Pointer is Reset...
+shared_point.get() = 0x0
+weak_point.expired() =  true
+
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;/section&gt;
 &lt;/p&gt;
 
@@ -139,7 +300,7 @@
 &lt;li&gt;Low level data structures
 
 &lt;ul&gt;
-&lt;li&gt;For performance, maybe!&lt;/li&gt;
+&lt;li&gt;For performance, maybe?&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Non-owning pointers and reference
 
@@ -154,7 +315,18 @@
 
 &lt;p&gt;&lt;section&gt;
 	&lt;h1 class=&#34;slidetitle&#34;&gt;Examples - Raw Pointer&lt;/h1&gt;
-	
+	&lt;pre class=&#34;code&#34;&gt;&lt;code class=&#34;cpp&#34;&gt;
+
+// herbsutter.com/elements-of-modern-c-style/
+class node {
+ vector&lt;unique_ptr&lt;node&gt;&gt; children;
+ node* parent;
+public:
+ :::
+};
+
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;/section&gt;
 &lt;/p&gt;
 
@@ -163,13 +335,7 @@
 	&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://herbsutter.com/elements-of-modern-c-style/&#34;&gt;http://herbsutter.com/elements-of-modern-c-style/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://herbsutter.com/2013/05/29/gotw-89-solution-smart-pointers/&#34;&gt;http://herbsutter.com/2013/05/29/gotw-89-solution-smart-pointers/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Smart_pointer&#34;&gt;http://en.wikipedia.org/wiki/Smart_pointer&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&amp;ldquo;Back to the Basics! Essentials of Modern C++ Style&amp;rdquo; - Herb Sutter
-
-&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=xnqTKD8uD64&#34;&gt;https://www.youtube.com/watch?v=xnqTKD8uD64&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/CppCon/CppCon2014&#34;&gt;https://github.com/CppCon/CppCon2014&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;/section&gt;

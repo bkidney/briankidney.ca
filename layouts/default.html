@@ -1,12 +1,12 @@
-{% include header.html %}
+{{ partial header.html . }}
 
 <div class="row-fluid">
   <div class="col-md-9">
-    {{ content }}
+    {{ .Content }}
   </div>
   <div class="col-md-3">
-    {% include sidebar.html %}
+    {{ partial sidebar.html . }}
   </div>
 </div>
 
-{% include footer.html %}
+{{ partial footer.html . }}

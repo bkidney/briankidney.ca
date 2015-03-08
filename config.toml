@@ -1,0 +1,19 @@
+baseurl = "briankidney.ca"
+contentdir = "content"
+layoutdir = "layouts"
+publishdir = "public"
+builddrafts = false
+baseurl = "http://yoursite.example.com/"
+canonifyurls = true
+
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[params]
+  description = "Brian Kidney"
+  author = "Brian Kidney"
+
+[permalinks]
+  posts = "/:year/:month/:day/:title.html"

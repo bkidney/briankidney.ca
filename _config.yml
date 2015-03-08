@@ -1,5 +1,0 @@
-name: Brian Kidney 
-markdown: redcarpet
-highlighter: pygments
-
-permalink: /:year/:month/:day/:title.html

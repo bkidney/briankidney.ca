@@ -1,5 +1,5 @@
 title = "briankidney.ca"
-baseurl = "briankidney.ca"
+baseurl = "http://briankidney.ca"
 contentdir = "content"
 layoutdir = "layouts"
 publishdir = "public"

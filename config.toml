@@ -1,9 +1,9 @@
+title = "briankidney.ca"
 baseurl = "briankidney.ca"
 contentdir = "content"
 layoutdir = "layouts"
 publishdir = "public"
 builddrafts = false
-baseurl = "http://yoursite.example.com/"
 canonifyurls = true
 disqusShortname = "briankidney"
 

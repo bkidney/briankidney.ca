@@ -1,0 +1,20 @@
+{{ partial "header.html" . }}
+
+<div class="row-fluid">
+  <div class="col-md-9">
+    <h2>{{ .Title }}</h2>
+    <p class="meta">{{ .Date.Format "January 2 2006" }}</p>
+
+    <div class="post">
+    {{ .Content }}
+    </div>
+
+    {{ if eq .Params.comments true }}
+      {{ partial "disqus.html" . }}
+    {{ end }}
+
+  </div>
+  <div class="col-md-3">
+    {{ partial "sidebar.html" . }}
+  </div>
+</div>

@@ -9,7 +9,9 @@
     {{ .Content }}
     </div>
 
-    {{ partial "disqus.html" . }}
+    {{ if eq .Params.comments true }}
+      {{ partial "disqus.html" . }}
+    {{ end }}
 
   </div>
   <div class="col-md-3">

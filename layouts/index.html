@@ -2,7 +2,6 @@
 
 <div class="row-fluid">
   <div class="col-md-9">
-    {{ .Content }}
     <div id="home">
 
       <h1>Blog Posts</h1>
@@ -14,7 +13,7 @@
     </div>
   </div>
   <div class="col-md-3">
-    {{ partial sidebar.html . }}
+    {{ partial "sidebar.html" . }} 
   </div>
 </div>
 
